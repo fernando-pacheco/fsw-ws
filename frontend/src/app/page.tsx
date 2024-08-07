@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./_components/ui/avatar";
 import { Separator } from "./_components/ui/separator";
 import { BarbershopItem } from "./_components/barbershop-item";
 import { db } from "./_lib/prisma";
-
+import { quickSearchOptions } from "./_constants/search";
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -35,20 +35,14 @@ export default async function Home() {
           </Button>
         </div>
 
-        {/* FastSearch */}
-        <div className="flex justify-between mt-6">
-          <Button variant="outline" className="gap-2">
-            <Image alt="cabelo" src="/cabelo.svg" width={16} height={16}/>
-            Cabelo
-          </Button>
-          <Button variant="outline" className="gap-2">
-            <Image alt="cabelo" src="/barba.svg" width={16} height={16}/>
-            Barba
-          </Button>
-          <Button variant="outline" className="gap-2">
-            <Image alt="cabelo" src="/acabamento.svg" width={16} height={16}/>
-            Acabamento
-          </Button>
+        {/* QuickSearch */}
+        <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          {quickSearchOptions.map(option => (
+            <Button key={option.title} variant="outline" className="gap-2">
+              <Image alt={option.title} src={option.imageUrl} width={16} height={16} />
+              {option.title}
+            </Button>
+          ))}
         </div>
 
         {/* Banner */}
@@ -56,7 +50,7 @@ export default async function Home() {
           <Image alt="Agende nos melhores com FSW Barber" src="/banner-01.png" fill className="object-cover rounded-xl" />
         </div>
 
-        {/* Scheduler */}
+        {/* Scheduling */}
         <p className="mt-6 font-bold text-sm uppercase text-gray-400">agendamentos</p>
         <div className="mt-2 flex gap-2">
           <Card className="flex w-full">
