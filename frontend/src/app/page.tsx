@@ -10,7 +10,6 @@ import { Separator } from "./_components/ui/separator";
 import { BarbershopItem } from "./_components/barbershop-item";
 import { db } from "./_lib/prisma";
 import { quickSearchOptions } from "./_constants/search";
-import { Footer } from "./_components/footer";
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -91,9 +90,6 @@ export default async function Home() {
           ))}
         </div>
       </main>
-      <footer>
-        <Footer />
-      </footer>
     </div>
   );
 }
