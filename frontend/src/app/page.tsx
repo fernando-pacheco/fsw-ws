@@ -10,6 +10,7 @@ import { Separator } from "./_components/ui/separator";
 import { BarbershopItem } from "./_components/barbershop-item";
 import { db } from "./_lib/prisma";
 import { quickSearchOptions } from "./_constants/search";
+import { Footer } from "./_components/footer";
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -91,11 +92,7 @@ export default async function Home() {
         </div>
       </main>
       <footer>
-        <Card className="rounded-none w-full flex items-center">
-          <CardContent className="py-5 px-6">
-            <p className="text-gray-400">© 2023 Copyright <b>FSW Barber</b></p>
-          </CardContent>
-        </Card>
+        <Footer />
       </footer>
     </div>
   );
