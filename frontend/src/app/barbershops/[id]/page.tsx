@@ -1,5 +1,6 @@
 import { PhoneItem } from "@/app/_components/phone-item"
 import { ServiceItem } from "@/app/_components/service-item"
+import { SidebarSheet } from "@/app/_components/sidebar-sheet"
 import { Button } from "@/app/_components/ui/button"
 import { Card, CardContent } from "@/app/_components/ui/card"
 import { Separator } from "@/app/_components/ui/separator"
@@ -60,9 +61,11 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
                         <ChevronLeft />
                     </Link>
                 </Button>
-                <Button size="icon" variant="secondary" className="absolute top-4 right-4">
-                    <MenuIcon />
-                </Button>
+                <SidebarSheet>
+                    <Button size="icon" variant="secondary" className="absolute top-4 right-4">
+                        <MenuIcon />
+                    </Button>
+                </SidebarSheet>
             </div>
 
             {/* TitleInfo */}
