@@ -1,6 +1,7 @@
 import { PhoneItem } from "@/app/_components/phone-item"
 import { ServiceItem } from "@/app/_components/service-item"
 import { Button } from "@/app/_components/ui/button"
+import { Card, CardContent } from "@/app/_components/ui/card"
 import { Separator } from "@/app/_components/ui/separator"
 import { db } from "@/app/_lib/prisma"
 import { ChevronLeft, MapPinIcon, MenuIcon, Star } from "lucide-react"
@@ -23,8 +24,29 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
         }
     })
 
+    if (!barbershop) {
+        return (
+            <div className="p-5 flex-1">
+                <Card>
+                    <CardContent className="relative h-40 items-center flex-1 flex justify-center p-0">
+                        <h1 className="font-bold text-lg">Barbershop não cadastrada</h1>
+                        <Button
+                            size="icon"
+                            asChild
+                            className="absolute top-2 left-2"
+                        >
+                            <Link href='/'>
+                                <ChevronLeft />
+                            </Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
+
     return (
-        <div className="">
+        <div>
             {/* Image */}
             <div className="relative h-[320px] w-full">
                 <Image
