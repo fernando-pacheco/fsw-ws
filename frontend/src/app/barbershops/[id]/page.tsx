@@ -1,3 +1,4 @@
+import { PhoneItem } from "@/app/_components/phone-item"
 import { ServiceItem } from "@/app/_components/service-item"
 import { Button } from "@/app/_components/ui/button"
 import { Separator } from "@/app/_components/ui/separator"
@@ -75,7 +76,13 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
                 </div>
             </div>
 
-
+            {/* Contact */}
+            <div className="p-5 border-b border-solid space-y-5">
+                <h2 className="text-gray-400 uppercase text-sm">contatos</h2>
+                {barbershop?.phones.map(phone => (
+                    <PhoneItem key={phone} phone={phone} />
+                ))}
+            </div>
         </div>
     )
 }
