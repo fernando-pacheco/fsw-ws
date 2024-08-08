@@ -1,7 +1,5 @@
 import { Header } from "./_components/header";
-import { Input } from "./_components/ui/input";
 import { Button } from "./_components/ui/button";
-import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { Card, CardContent } from "./_components/ui/card";
 import { Badge } from "./_components/ui/badge";
@@ -10,6 +8,8 @@ import { Separator } from "./_components/ui/separator";
 import { BarbershopItem } from "./_components/barbershop-item";
 import { db } from "./_lib/prisma";
 import { quickSearchOptions } from "./_constants/search";
+import { SearchLabel } from "./_components/search-label";
+import Link from "next/link";
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -28,19 +28,23 @@ export default async function Home() {
         <p>Segunda-feira, 05 de agosto.</p>
 
         {/* Search */}
-        <div className="flex items-center gap-2 mt-6">
-          <Input placeholder="Faça sua busca..." />
-          <Button size="icon">
-            <SearchIcon className="size-5" />
-          </Button>
+        <div className="mt-6">
+          <SearchLabel />
         </div>
 
         {/* QuickSearch */}
         <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {quickSearchOptions.map(option => (
-            <Button key={option.title} variant="outline" className="gap-2">
-              <Image alt={option.title} src={option.imageUrl} width={16} height={16} />
-              {option.title}
+            <Button
+              key={option.title}
+              variant="secondary"
+              className="flex gap-3 hover:bg-primary px-6"
+              asChild
+            >
+              <Link href={`/barbershops?search=${option.title}`}>
+                <Image alt={option.title} src={option.imageUrl} width={18} height={18} />
+                {option.title}
+              </Link>
             </Button>
           ))}
         </div>
