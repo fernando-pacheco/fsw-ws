@@ -24,7 +24,7 @@ export default async function Home() {
       <Header />
       <main className="p-5">
         {/* Title */}
-        <h2 className="text-xl font-bold">Olá, Felipe!</h2>
+        <h2 className="text-xl font-bold">Olá, Fernando!</h2>
         <p>Segunda-feira, 05 de agosto.</p>
 
         {/* Search */}
