@@ -3,7 +3,7 @@
 import { House, CalendarDays, LogOut, LogIn } from "lucide-react";
 import { quickSearchOptions } from "../_constants/search";
 import { Button } from "./ui/button";
-import { SheetTrigger, SheetContent, SheetHeader, SheetTitle, Sheet } from "./ui/sheet";
+import { SheetTrigger, SheetContent, SheetHeader, SheetTitle, Sheet, SheetClose } from "./ui/sheet";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -25,7 +25,7 @@ export function SidebarSheet({
         await signIn("google")
     }
     async function handleLogoutWithGoogle() {
-        await signOut("google")
+        await signOut()
     }
 
     return (
@@ -101,10 +101,18 @@ export function SidebarSheet({
                     {/* ServiceItems */}
                     <div className="space-y-2">
                         {quickSearchOptions.map(option => (
-                            <Button key={option.title} variant="ghost" className="w-full flex justify-start gap-3 hover:bg-primary">
-                                <Image alt={option.title} src={option.imageUrl} width={18} height={18} />
-                                {option.title}
-                            </Button>
+                            <SheetClose key={option.title} asChild>
+                                <Button
+                                    variant="ghost"
+                                    className="w-full flex justify-start gap-3 hover:bg-primary"
+                                    asChild
+                                >
+                                    <Link href={`/barbershops?search=${option.title}`}>
+                                        <Image alt={option.title} src={option.imageUrl} width={18} height={18} />
+                                        {option.title}
+                                    </Link>
+                                </Button>
+                            </SheetClose>
                         ))}
                     </div>
 
