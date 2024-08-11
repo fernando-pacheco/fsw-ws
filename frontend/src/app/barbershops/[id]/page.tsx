@@ -96,7 +96,7 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
                 <h2 className="text-gray-400 uppercase text-sm">serviços</h2>
                 <div className="space-y-3">
                     {barbershop?.services.map(service => (
-                        <ServiceItem key={service.id} service={service} />
+                        <ServiceItem key={service.id} service={service} barbershop={barbershop} />
                     ))}
                 </div>
             </div>
@@ -104,8 +104,8 @@ export default async function BarbershopPage({ params }: BarbershopPageProps) {
             {/* Contact */}
             <div className="p-5 border-b border-solid space-y-5">
                 <h2 className="text-gray-400 uppercase text-sm">contatos</h2>
-                {barbershop?.phones.map(phone => (
-                    <PhoneItem key={phone} phone={phone} />
+                {barbershop?.phones.map((phone, index) => (
+                    <PhoneItem key={index+1} phone={phone} />
                 ))}
             </div>
         </div>
