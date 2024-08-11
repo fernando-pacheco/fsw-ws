@@ -9,8 +9,9 @@ import { ReactNode } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { SignInDialog } from "./sign-in-dialog";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
 interface SidebarSheetProps {
     children: ReactNode
@@ -21,9 +22,6 @@ export function SidebarSheet({
 }: SidebarSheetProps) {
     const { data } = useSession()
 
-    async function handleLoginWithGoogle() {
-        await signIn("google")
-    }
     async function handleLogoutWithGoogle() {
         await signOut()
     }
@@ -49,21 +47,7 @@ export function SidebarSheet({
                                     </Button>
                                 </DialogTrigger>
                                 <DialogContent className="flex items-center justify-center flex-col w-[90%]">
-                                    <DialogTitle>Faça login na plataforma</DialogTitle>
-                                    <DialogDescription>Conecte-se usando sua conta Google.</DialogDescription>
-                                    <Button
-                                        variant="outline"
-                                        className="w-full gap-2 border border-primary"
-                                        onClick={handleLoginWithGoogle}
-                                    >
-                                        <Image
-                                            alt="google"
-                                            src="/google.svg"
-                                            width={18}
-                                            height={18}
-                                        />
-                                        Google
-                                    </Button>
+                                    <SignInDialog />
                                 </DialogContent>
                             </Dialog>
                         </div>

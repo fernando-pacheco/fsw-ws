@@ -27,7 +27,6 @@ export function SearchLabel() {
     const router = useRouter()
 
     function handleSubmit(data: z.infer<typeof formSchema>) {
-        console.log(data.search)
         router.push(`/barbershops?search=${data.search}`)
     }
 
