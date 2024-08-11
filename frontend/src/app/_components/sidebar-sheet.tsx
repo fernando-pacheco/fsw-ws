@@ -103,14 +103,16 @@ export function SidebarSheet({
                     <Separator />
 
                     {/* Logout */}
-                    <Button
-                        variant="ghost"
-                        className="w-full flex justify-start gap-3 hover:bg-primary"
-                        onClick={handleLogoutWithGoogle}
-                    >
-                        <LogOut size={18} />
-                        Sair da conta
-                    </Button>
+                    {data?.user &&
+                        <Button
+                            variant="ghost"
+                            className="w-full flex justify-start gap-3 hover:bg-primary"
+                            onClick={handleLogoutWithGoogle}
+                        >
+                            <LogOut size={18} />
+                            Sair da conta
+                        </Button>
+                    }
                 </div>
             </SheetContent>
         </Sheet>
